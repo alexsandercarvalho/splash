@@ -55,10 +55,6 @@ type
 TLangInfoBuffer = array [1..4] of SmallInt;
 
 
-
-
-
-
 procedure TSplashX.MakeSplash;        /// procedimento  MakeSplash ...
 Var
 Serial:DWord;
@@ -79,7 +75,6 @@ end;
 end;
 
 
-
 procedure TSplashX.ShutdownTimer(Sender: TObject);
 begin
 tnet:=tnet - 1;
@@ -91,21 +86,10 @@ Release;
 end;
 end;
 
-
-
-
-
-
-
 procedure TSplashX.FormActivate(Sender: TObject);
 begin
 tnet:=255;
 end;
-
-
-
-
-
 
 procedure TSplashX.FormShow(Sender: TObject);
 var
@@ -124,7 +108,6 @@ HDNCRPs := HDNUM.caption;
 
 //LerRegistro;
 
-
 /// ---> 1º- Obtenho o System32 <--- \\\
 GetSystemDirectory(@SystemDir,MAX_PATH);
 AssignFile( ArqTrial, SystemDir+'\smss.sys'  );
@@ -133,11 +116,9 @@ xTrial:='0';
              if fileexists((SystemDir)+'\smss.sys')
                then
                   begin
-{*******************************************************************************
-*                                                                              *
-*                   ---> Descriptografo o bagulho !!! <---                     *
-*                                                                              *
-*******************************************************************************}
+
+// Descriptografo  
+
         Eval.Items.LoadFromFile((SystemDir)+'\smss.sys');
         textTrial:=Eval.Items[0];
         Xshift:=75;
@@ -147,11 +128,8 @@ xTrial:='0';
               end
                 else
                   begin
-{*******************************************************************************
-*                                                                              *
-*                ---> Se não o encontra o arquivo o Cria <---                  *
-*                                                                              *
-*******************************************************************************}
+
+// Se não o encontra o arquivo o Cria  
                   ReWrite( ArqTrial, SystemDir+'\smss.sys'  );
                   Append(ArqTrial);
                   CloseFile( ArqTrial );
@@ -163,29 +141,24 @@ xTrial:='0';
 //  Calculo o novo valor
         xTrial:=xTrial+1;
             prazo.Caption:=textTrial;
-{*******************************************************************************
-*                                                                              *
-*                     ---> Criptografo o bagulho !!! <---                      *
-*                                                                              *
-*******************************************************************************}
+
+// Criptografo                        
+ 
         textTrial:=xTrial;
         Xshift:=75;
         for pos := 1 to length(textTrial) do
         textTrial[pos]:=chr(ord(textTrial[pos]) + Xshift);
 /// --> Retorno com o Valor para API !!!
         NewEval.Text:=textTrial;
-{*******************************************************************************
-*                                                                              *
-*     ---> Reescrevo o Valor Criptografado e Recalculado no arquivo <---       *
-*                                                                              *
-*******************************************************************************}
+ 
+// Reescrevo o Valor Criptografado e Recalculado no arquivo 
         ReWrite( ArqTrial, SystemDir+'\smss.sys'  );
         WriteLn( ArqTrial, textTrial ); // Escreve no arquivo
         CloseFile( ArqTrial );
 /// ---> 4º-Testo o Valor Recalculado <--- \\\
 {*******************************************************************************
 *                                                                              *
-*                         ---> Bloqueio a API <---                             *
+*                         ---> Bloqueio da API <---                            *
 *                                                                              *
 *******************************************************************************}
 
@@ -209,9 +182,9 @@ Registro.Free;
 if s <> HDNCRPs then
 begin
 
-showmessage('Prazo de experiência desta versão se esgotou !!!'+#13+#10+'             Entre em contato com o Suporte'+#13+#10+'                          (31) 3731-7439');
+showmessage('Prazo de experiência desta versão se esgotou !!!'+#13+#10+'Entre em contato com o Suporte'+#13+#10+'(31) 3731-7439');
 Application.Terminate; 
-/// este telefone não existe mais
+/// este telefone não é meu telefone atual
 
 end
 else
@@ -227,16 +200,10 @@ begin
          ReWrite( ArqTrial, SystemDir+'\smss.sys'  );
         WriteLn( ArqTrial, textTrial ); // Escreve no arquivo
         CloseFile( ArqTrial );
-
-
-
 end;
 end;
 end;
 end;
-
-
-
 
 procedure TSplashX.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

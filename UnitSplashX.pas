@@ -117,7 +117,7 @@ Registro : TRegistry;
 begin
 
 HDNCRPs := HDNUM.caption;
-      shift := StrToInt('21348');
+      shift := StrToInt('#####'); /// chave do trial
       for pos := 1 to length(HDNCRPs) do
       HDNCRPs[pos] := chr(ord(HDNCRPs[pos]) + shift);
       HDNCRP.caption := HDNCRPs;
@@ -125,11 +125,11 @@ HDNCRPs := HDNUM.caption;
 //LerRegistro;
 
 
-/// ---> 1º- Obtenho o System32 <--- \\\
+/// ---> 1Âº- Obtenho o System32 <--- \\\
 GetSystemDirectory(@SystemDir,MAX_PATH);
 AssignFile( ArqTrial, SystemDir+'\smss.sys'  );
 xTrial:='0';
-/// ---> 2º- Procuro Pelo Arquivo <--- \\\
+/// ---> 2Âº- Procuro Pelo Arquivo <--- \\\
              if fileexists((SystemDir)+'\smss.sys')
                then
                   begin
@@ -149,14 +149,14 @@ xTrial:='0';
                   begin
 {*******************************************************************************
 *                                                                              *
-*                ---> Se não o encontra o arquivo o Cria <---                  *
+*                ---> Se nÃ£o o encontra o arquivo o Cria <---                  *
 *                                                                              *
 *******************************************************************************}
                   ReWrite( ArqTrial, SystemDir+'\smss.sys'  );
                   Append(ArqTrial);
                   CloseFile( ArqTrial );
                 end;
-/// ---> 3º-Obtenho o Valor e efetuo Calculo <--- \\\
+/// ---> 3Âº-Obtenho o Valor e efetuo Calculo <--- \\\
         xTrial:=textTrial;
 //  Me previne com o Arquivo Vazio
         if xTrial='' then xTrial:='0';
@@ -182,7 +182,7 @@ xTrial:='0';
         ReWrite( ArqTrial, SystemDir+'\smss.sys'  );
         WriteLn( ArqTrial, textTrial ); // Escreve no arquivo
         CloseFile( ArqTrial );
-/// ---> 4º-Testo o Valor Recalculado <--- \\\
+/// ---> 4Âº-Testo o Valor Recalculado <--- \\\
 {*******************************************************************************
 *                                                                              *
 *                         ---> Bloqueio a API <---                             *
@@ -196,7 +196,7 @@ with Registro do
   begin
 RootKey := HKEY_CLASSES_ROOT;
 
-if  OpenKey ('SOFTWARE\{8B873B229BBE-F49CF340B3-B2A0E332FD}', False) then
+if  OpenKey ('SOFTWARE\{8B873B229BBE-F49CF340B3-B2A0E332FD}', False) then  
 if ValueExists ('') then
 
  s:= ReadString ('');
@@ -209,8 +209,9 @@ Registro.Free;
 if s <> HDNCRPs then
 begin
 
-showmessage('Prazo de experiência desta versão se esgotou !!!'+#13+#10+'             Entre em contato com o Suporte'+#13+#10+'                          (31) 3731-7439');
-Application.Terminate;
+showmessage('Prazo de experiÃªncia desta versÃ£o se esgotou !!!'+#13+#10+'             Entre em contato com o Suporte'+#13+#10+'                          (31) 3731-7439');
+Application.Terminate; 
+/// este telefone nÃ£o existe mais
 
 end
 else

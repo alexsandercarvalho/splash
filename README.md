@@ -3,3 +3,5 @@ A tela de abertura de um programa de computador é algo bem rotineiro de ser vis
 Lembando que, à época usei tecnologia embarcada e seus tokens criptográficos Compact 500 da SafeNet® para distribuição segura e antipirataria em meus softwares.
 
 Eis uma boa fonte de pesquisa para desenvolver o seu splash (tela de abertura)
+
+Linguagem Pascal @ Borland Delphi
